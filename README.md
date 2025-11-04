@@ -42,9 +42,9 @@ docker镜像： `mikehand888/argo-nezha:latest` ， 支持 amd64 和 arm64 架�
 
   | 变量名        | 是否必须  | 备注 |
   | ------------ | ------   | ---- |
-  | GH_USER             | 仅v0必填 | github 的用户名，用于面板管理授权 |
-  | GH_CLIENTID         | 仅v0必填 | 在 github 上申请 |
-  | GH_CLIENTSECRET     | 仅v0必填 | 在 github 上申请 |
+  | GH_USER             | v0必填 | github 的用户名，用于面板管理授权 |
+  | GH_CLIENTID         | v0必填 | 在 github 上申请 |
+  | GH_CLIENTSECRET     | v0必填 | 在 github 上申请 |
   | GH_BACKUP_USER      | 备份或填 | 在 github 上备份哪吒服务端数据库的 github 用户名，不填则与面板管理授权的账户 GH_USER 一致  |
   | GH_REPO             | 备份必填 | 在 github 上备份哪吒服务端数据库文件的 github 库 |
   | GH_EMAIL            | 备份必填 | github 的邮箱，用于备份库的 git 推送 |
