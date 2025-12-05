@@ -2,6 +2,7 @@ FROM debian
 
 WORKDIR /dashboard
 
+# 安装依赖
 RUN apt-get update &&\
     apt-get -y install openssh-server wget iproute2 vim git cron unzip supervisor nginx sqlite3 &&\
     git config --global core.bigFileThreshold 1k &&\
@@ -10,9 +11,13 @@ RUN apt-get update &&\
     git config --global pack.threads 1 &&\
     git config --global pack.windowMemory 50m &&\
     apt-get clean &&\
-    rm -rf /var/lib/apt/lists/* &&\
-    echo "#!/usr/bin/env bash\n\n\
-bash <(wget -qO- https://raw.githubusercontent.com/Kiritocyz/Argo-Nezha-Service-Container/main/init.sh)" > entrypoint.sh &&\
-    chmod +x entrypoint.sh
+    rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["./entrypoint.sh"]
+# 【核心修改】直接把本地修好的 init.sh 复制进去，不要去网上下载了！
+COPY init.sh /dashboard/init.sh
+
+# 给脚本执行权限
+RUN chmod +x /dashboard/init.sh
+
+# 启动命令
+ENTRYPOINT ["/dashboard/init.sh"]
